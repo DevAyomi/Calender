@@ -1,26 +1,65 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="w-full">
+    <div class="m-auto">
+    <h1 class="text-2xl text-center">Dc Heroes {{ herosCount }}</h1>
+    <ul>
+      <li v-for="(name, index) in dcHeros" :key="name.name">
+        <div>{{ name.name }} <button @click="removeHero(index)">X</button></div>
+        <input type="" name="">
+      </li>
+    </ul>
+    <form @submit.prevent="addHero">
+        <input v-model="newHero" placeholder="Type your hero name" />
+        <button type="submit">AddHero</button>
+    </form>
+  </div>
+  </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  
+  export default{
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+    data () {
+      return {
+        newHero: "",
+        firstName: "Gbolagade",
+        lastName: "Winner",
+        dcHeros: [
+          {name: 'supergirl'},
+          {name: 'superman'}, 
+          {name: 'arrow'}, 
+          {name: 'bataman'}, 
+          {name: 'flash'}
+        ],
+      }
+    },
+
+    methods: {
+      addHero(){
+        if(this.newHero !== ''){
+          this.dcHeros.push({name: this.newHero});
+          this.newHero=''
+        }
+      },
+
+      removeHero(index){
+        this.dcHeros = this.dcHeros.filter((hero, i) => i !== index);
+      }
+    },
+
+    computed: {
+      herosCount(){
+        return this.dcHeros.length;
+      }
+    }
+
+
+
   }
-}
+
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style type="text/css"></style>
+
