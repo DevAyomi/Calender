@@ -57,7 +57,6 @@
 				
 			},
 			currentDateClass(num){
-				// return num === this.currentDate ?  : '' ;
 				const calendarFullDate = new Date(this.currentYear, this.currentMonth, num).toDateString();
 				const currentFullDate = new Date().toDateString();
 				return calendarFullDate == currentFullDate ? 'bg-blue-800 text-white border rounded p-2' : '';
